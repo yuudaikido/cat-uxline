@@ -92,7 +92,7 @@ uxline-cat-lab/
 └── src/ (Laravel 12)
     ├── app/
     │   ├── Lines/                       # ── Lines層（ジャーニー単位）
-    │   │   └── MonthlyReading/          # 例：月次検針ジャーニー
+    │   │   └── MonthlyReading/          # 例：月次ジャーニー
     │   │       ├── Http/                # Controller・Request
     │   │       ├── Relations/           # 関係関数（原理③）
     │   │       ├── Views/ (resources側でも可)
