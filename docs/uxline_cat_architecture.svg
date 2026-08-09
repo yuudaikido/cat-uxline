@@ -1,0 +1,148 @@
+<svg viewBox="0 0 880 1330" width="880" height="1330" xmlns="http://www.w3.org/2000/svg" style="font-family:'Hiragino Sans','Noto Sans JP',sans-serif; color:#2a2a2a; background:#fdfcf9;">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="1330" fill="#fdfcf9"/>
+
+  <!-- ================= TITLE ================= -->
+  <text x="440" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a1a">UXライン × CAT — アーキテクチャ一式</text>
+  <text x="440" y="58" text-anchor="middle" font-size="12.5" fill="#777">マクロ（体験で縦切り）と ミクロ（ノードとN枚のグラフ）の対</text>
+
+  <!-- ================= SECTION I : UX LINE ================= -->
+  <rect x="20" y="76" width="840" height="360" rx="14" fill="#eff5ff" stroke="#6d9ee8" stroke-width="1.5"/>
+  <text x="40" y="104" font-size="16" font-weight="700" fill="#1a1a1a">Ⅰ. UXラインアーキテクチャ（マクロ）</text>
+  <text x="40" y="122" font-size="12" fill="#777">切る軸＝ユーザーの物語（ジャーニー）。ビジネスの会話単位とコードの変更単位が一致する</text>
+
+  <!-- journey boxes -->
+  <g font-size="13.5" font-weight="600" fill="#1a1a1a">
+    <rect x="45"  y="138" width="240" height="62" rx="9" fill="#d8e6fb" stroke="#5b8dd9"/>
+    <text x="165" y="163" text-anchor="middle">月次検針ジャーニー</text>
+    <text x="165" y="182" text-anchor="middle" font-size="10.5" font-weight="400" fill="#666">ログイン→現地入力→提出</text>
+
+    <rect x="320" y="138" width="240" height="62" rx="9" fill="#d8e6fb" stroke="#5b8dd9"/>
+    <text x="440" y="163" text-anchor="middle">異常値対応ジャーニー</text>
+    <text x="440" y="182" text-anchor="middle" font-size="10.5" font-weight="400" fill="#666">アラート→確認→再検針指示</text>
+
+    <rect x="595" y="138" width="240" height="62" rx="9" fill="#d8e6fb" stroke="#5b8dd9"/>
+    <text x="715" y="163" text-anchor="middle">請求確認ジャーニー</text>
+    <text x="715" y="182" text-anchor="middle" font-size="10.5" font-weight="400" fill="#666">明細→照会→承認</text>
+  </g>
+
+  <!-- arrows to shared layer -->
+  <line x1="165" y1="200" x2="165" y2="232" stroke="#555" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="440" y1="200" x2="440" y2="232" stroke="#555" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="715" y1="200" x2="715" y2="232" stroke="#555" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- shared service layer -->
+  <rect x="45" y="236" width="790" height="88" rx="9" fill="#f3ebfb" stroke="#9b6fd0"/>
+  <text x="440" y="258" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">共有サービス層（ドメインAPI：業務の意味を公開し、データの形を隠す）</text>
+  <rect x="70" y="270" width="360" height="42" rx="7" fill="#fbe9e9" stroke="#d66a6a"/>
+  <text x="250" y="287" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">事実系（定義は常に1つ）</text>
+  <text x="250" y="303" text-anchor="middle" font-size="10.5" fill="#775">DI契約＋bind一行で全ライン一斉切替</text>
+  <rect x="450" y="270" width="360" height="42" rx="7" fill="#e8f5e9" stroke="#5aa16a"/>
+  <text x="630" y="287" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">体験系（ライン都合で可変）</text>
+  <text x="630" y="303" text-anchor="middle" font-size="10.5" fill="#577">enum戦略：変種を追加、各ラインが自分のタイミングで乗換</text>
+
+  <!-- arrow to DB -->
+  <line x1="440" y1="324" x2="440" y2="352" stroke="#555" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="230" y="356" width="420" height="46" rx="9" fill="#eeeeee" stroke="#999"/>
+  <text x="440" y="384" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1a1a1a">データAPI / DB（事実）</text>
+
+  <!-- stability gradient -->
+  <line x1="852" y1="150" x2="852" y2="395" stroke="#888" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="849" y="162" font-size="10" fill="#888" transform="rotate(90 849 162)">変わりやすい（体験）→ 変わりにくい（意味）→ 最安定（事実）</text>
+
+  <!-- ================= ZOOM CONNECTOR ================= -->
+  <path d="M 60 200 L 40 470" stroke="#999" stroke-width="1.2" stroke-dasharray="5 4" fill="none"/>
+  <path d="M 285 200 L 840 470" stroke="#999" stroke-width="1.2" stroke-dasharray="5 4" fill="none"/>
+  <text x="440" y="458" text-anchor="middle" font-size="12.5" font-weight="600" fill="#555">🔍 1本のラインの内部を拡大 —— 組み立て原理がCAT</text>
+
+  <!-- ================= SECTION II : CAT ================= -->
+  <rect x="20" y="472" width="840" height="700" rx="14" fill="#fdf6ec" stroke="#e0a04a" stroke-width="1.5"/>
+  <text x="40" y="500" font-size="16" font-weight="700" fill="#1a1a1a">Ⅱ. CATアーキテクチャ（ミクロ）🐈‍⬛</text>
+  <text x="40" y="518" font-size="12" fill="#777">様式は存在しない。1つのノード集合と、N枚のグラフがあるだけ</text>
+
+  <!-- ---- Principle 3: relation-function DAG ---- -->
+  <text x="45" y="548" font-size="13.5" font-weight="700" fill="#1a1a1a">原理③ エッジ実体化：関係関数のDAG</text>
+  <text x="45" y="564" font-size="11" fill="#777">上層＝純粋な組み立て（呼び出しの目次）／ 葉＝純粋な仕事。誤った呼び出し順が構造的に存在不可能</text>
+
+  <!-- top node -->
+  <rect x="330" y="576" width="220" height="36" rx="7" fill="#fbe3c0" stroke="#d98e2b"/>
+  <text x="440" y="599" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a" font-family="Menlo,Consolas,monospace">journeyTop_seq_1</text>
+
+  <!-- mid nodes -->
+  <rect x="150" y="646" width="220" height="36" rx="7" fill="#fceedb" stroke="#dda44f"/>
+  <text x="260" y="669" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a" font-family="Menlo,Consolas,monospace">fetchParse_seq_1</text>
+  <rect x="510" y="646" width="220" height="36" rx="7" fill="#fceedb" stroke="#dda44f"/>
+  <text x="620" y="669" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a" font-family="Menlo,Consolas,monospace">persistVerify_tx_1</text>
+
+  <!-- leaves -->
+  <g font-family="Menlo,Consolas,monospace" font-size="10.5" fill="#333">
+    <rect x="60"  y="716" width="180" height="32" rx="6" fill="#f0f0f0" stroke="#aaa"/>
+    <text x="150" y="736" text-anchor="middle">readData_seq_1</text>
+    <rect x="255" y="716" width="180" height="32" rx="6" fill="#f0f0f0" stroke="#aaa"/>
+    <text x="345" y="736" text-anchor="middle">parseData_seq_2</text>
+    <rect x="450" y="716" width="180" height="32" rx="6" fill="#f0f0f0" stroke="#aaa"/>
+    <text x="540" y="736" text-anchor="middle">persistData_tx_1</text>
+    <rect x="645" y="716" width="180" height="32" rx="6" fill="#f0f0f0" stroke="#aaa"/>
+    <text x="735" y="736" text-anchor="middle">verifyData_tx_2</text>
+  </g>
+
+  <!-- DAG edges -->
+  <g stroke="#996" stroke-width="1.4" fill="none">
+    <path d="M 400 612 L 280 644" marker-end="url(#arr)"/>
+    <path d="M 480 612 L 600 644" marker-end="url(#arr)"/>
+    <path d="M 230 682 L 160 714" marker-end="url(#arr)"/>
+    <path d="M 290 682 L 335 714" marker-end="url(#arr)"/>
+    <path d="M 590 682 L 550 714" marker-end="url(#arr)"/>
+    <path d="M 650 682 L 725 714" marker-end="url(#arr)"/>
+  </g>
+  <text x="835" y="600" text-anchor="end" font-size="10.5" fill="#996" >←組み立てのみ</text>
+  <text x="835" y="740" text-anchor="end" font-size="10.5" fill="#996" transform="translate(0,14)">←仕事のみ</text>
+
+  <!-- principle 1 note -->
+  <rect x="60" y="772" width="765" height="30" rx="6" fill="#eef4fd" stroke="#7fa8e0" stroke-dasharray="4 3"/>
+  <text x="442" y="791" text-anchor="middle" font-size="11.5" fill="#334">原理① 住所式命名 name_case_connector_type_number —— 一意性＝機械的規則、意味＝レジストリ表引き（読者はLLM＋検索の世代）</text>
+
+  <!-- ---- Principle 2: overlay graphs ---- -->
+  <text x="45" y="836" font-size="13.5" font-weight="700" fill="#1a1a1a">原理② オーバーレイグラフ：局所自由なグラフの上にグラフを敷く</text>
+  <text x="45" y="852" font-size="11" fill="#777">大域不変条件（TX整合性・セキュリティ・検証状態）は、同じノード集合を覆う独立レイヤーとして実装（多重グラフ）</text>
+
+  <!-- stacked planes -->
+  <polygon points="150,872 640,872 730,912 240,912" fill="#fbe9e9" fill-opacity="0.85" stroke="#d66a6a"/>
+  <text x="745" y="898" font-size="11.5" font-weight="600" fill="#1a1a1a" text-anchor="start">セキュリティ区画網</text>
+  <polygon points="150,916 640,916 730,956 240,956" fill="#e8f5e9" fill-opacity="0.85" stroke="#5aa16a"/>
+  <text x="745" y="942" font-size="11.5" font-weight="600" fill="#1a1a1a" text-anchor="start">リトライ網</text>
+  <polygon points="150,960 640,960 730,1000 240,1000" fill="#f3ebfb" fill-opacity="0.85" stroke="#9b6fd0"/>
+  <text x="745" y="986" font-size="11.5" font-weight="600" fill="#1a1a1a" text-anchor="start">TX境界網</text>
+
+  <!-- base node row -->
+  <g fill="#444">
+    <circle cx="260" cy="1030" r="6"/><circle cx="360" cy="1030" r="6"/><circle cx="460" cy="1030" r="6"/><circle cx="560" cy="1030" r="6"/>
+  </g>
+  <text x="600" y="1035" font-size="11.5" fill="#666">← レイヤー0：呼び出しグラフ（同一ノード集合）</text>
+  <g stroke="#999" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="260" y1="1022" x2="300" y2="905"/>
+    <line x1="360" y1="1022" x2="400" y2="905"/>
+    <line x1="460" y1="1022" x2="500" y2="905"/>
+    <line x1="560" y1="1022" x2="600" y2="905"/>
+  </g>
+
+  <!-- ---- The cat ---- -->
+  <rect x="45" y="1056" width="790" height="100" rx="9" fill="#fbf1de" stroke="#d98e2b"/>
+  <text x="80" y="1100" font-size="30">🐈‍⬛</text>
+  <text x="130" y="1084" font-size="13.5" font-weight="700" fill="#1a1a1a">織り込み順序問題の解：「観測が合成を確定する」（名前の由来）</text>
+  <text x="130" y="1104" font-size="11.5" fill="#444">重ね順はレイヤーにもノードにも住まない。呼び出し文脈（観測点）が確定させる。</text>
+  <text x="130" y="1124" font-size="11.5" fill="#444">頻出の重ね順は関係レイヤーとして部品化：tx_outside_retry ／ retry_inside_tx</text>
+  <text x="130" y="1144" font-size="11" fill="#888">同じ手が全階層で再帰：関数間の関係→関係関数、レイヤー間の関係→関係レイヤー（フラクタル）</text>
+
+  <!-- ================= META BANNER ================= -->
+  <rect x="20" y="1190" width="840" height="118" rx="14" fill="#f2f2f0" stroke="#aaa"/>
+  <text x="440" y="1220" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">メタ原理</text>
+  <text x="440" y="1246" text-anchor="middle" font-size="12.5" fill="#333">既存様式（MVC・マイクロサービス・DI…）は全て 原理①②③ の特定配置例にすぎない</text>
+  <text x="440" y="1268" text-anchor="middle" font-size="12.5" fill="#333">統一は文法レベルに引き上げ、文章レベルは自由にする</text>
+  <text x="440" y="1294" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a1a1a">アーキテクチャとは、未来の変更分布に対するベットである</text>
+</svg>

@@ -1,0 +1,9 @@
+parameters:
+    level: 0
+    paths:
+        - fixture
+    scanDirectories:
+        - ../cat-core/src
+rules:
+    - Cat\Stan\AddressNamingRule
+    - Cat\Stan\AdaptSizeRule
